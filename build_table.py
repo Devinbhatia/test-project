@@ -49,6 +49,8 @@ def main():
     jobs = load_jobs()
     partial = json.load(open(os.path.join(DATA, "counts_partial.json")))
     received = load_received(paths)
+    for k, v in partial.get("received_extra", {}).items():
+        received[k] += v
 
     rows = []
     for j in jobs:
